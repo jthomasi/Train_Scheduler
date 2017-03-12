@@ -63,13 +63,11 @@ $(document).on("click", "#submit-btn", function(event){
 	var minutesAway;
 
 
-	var now = moment(new Date()); //todays date
+	var now = moment(new Date());
 	now = moment(now, "YYYY-MM-DD HH:mm");
-	console.log(now);
+	
 	var end = moment(firstTime, "HH:mm");
 	end = moment(end, "YYYY-MM-DD HH:mm")
-	console.log(end); // start date
-	
 
 	if ( now < end ) {
 
@@ -78,23 +76,19 @@ $(document).on("click", "#submit-btn", function(event){
 		for (var i=0;i<100;i++){
 			
 			var now = moment(now).add(frequency, 'm');
-			console.log(now);
 			halfs = halfs+1;
 
-			//times.push(end);
 			if ( now > end ) {
 
 				var duration = moment.duration(now.diff(end));
-				console.log(duration);
 				nextArrival = moment(now).format("YYYY-MM-DD HH:mm");
+
 				var minutes = duration.asMinutes();
 				minutes = Math.round(minutes);
 
 				var hours = Math.round((halfs*30)/60);
-				console.log(nextArrival);
 
 				minutesAway = (hours+" hours and "+minutes+" minutes");
-				console.log(minutesAway);
 
 				pushData(name,destination,frequency,nextArrival,minutesAway);
 
@@ -113,23 +107,19 @@ $(document).on("click", "#submit-btn", function(event){
 		for (var i=0;i<100;i++){
 			
 			var end = moment(end).add(frequency, 'm');
-			console.log(end);
 			halfs = halfs+1;
 
-			//times.push(end);
 			if ( now < end ) {
 
 				var duration = moment.duration(end.diff(now));
-				console.log(duration);
 				nextArrival = moment(now).format("YYYY-MM-DD HH:mm");
+
 				var minutes = duration.asMinutes();
 				minutes = Math.round(minutes);
 
 				var hours = Math.round((halfs*30)/60);
-				console.log(nextArrival);
 
 				minutesAway = (hours+" hours and "+minutes+" minutes");
-				console.log(minutesAway);
 
 				pushData(name,destination,frequency,nextArrival,minutesAway);
 
@@ -140,7 +130,6 @@ $(document).on("click", "#submit-btn", function(event){
 		}
 
 	}
-
 
 });
 
